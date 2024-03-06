@@ -1,26 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-  const url =
-    "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=4b34bf8172088dd335293ce3d0738c78";
+  const apiKey = "61efc3ca35c4e15351f6ae364fd1c597";
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=${apiKey}`;
   const [data, setData] = useState();
 
-  const fetchData = () => {
-    return fetch(url)
-    .then((res) => res.json())
-    .then((d) => setData(d))
-  };
+  useEffect(() => {
+    const fetchData = () => {
+      return fetch(url)
+        .then((res) => res.json())
+        .then((d) => setData(d))
+        .catch((error) => console.log("Error fetching data : ", error));
+    };
 
-  fetchData();
+    fetchData();
+  }, [url]);
 
-  return (<div className="App">
-      {data.map((dataObj, index) => {
-        return(
-            <h1>{dataObj.city.name}</h1>
-        )
-      })}
-  </div>);
+  return (
+    <div className="App">
+      {Array.isArray(data) &&
+        data.map((dataObj, index) => {
+          return <h1 key={index}>{dataObj.city.name}</h1>;
+        })}
+    </div>
+  );
 }
 
 export default App;
