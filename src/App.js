@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
+import CustomDate from "./CustomDate";
 
 function App() {
   const [data, setData] = useState();
   const [city, setCity] = useState("");
+  const [flag, setFlag] = useState(false);
 
   const handleChange = (event) => {
     const cityName = event.target.value;
@@ -20,12 +22,9 @@ function App() {
       .catch((error) => console.log("Error fetching data : ", error));
   };
 
-  useEffect(() => {
-    fetchData();
-  }, [city]);
-
   const handleSubmit = (event) => {
     event.preventDefault();
+    setFlag(true);
     fetchData();
   };
 
@@ -33,17 +32,26 @@ function App() {
     <div className="App">
       <div>
         <form onSubmit={handleSubmit}>
-          <label>Enter city name: </label>
+          {/* <label>Enter city name: </label> */}
           <input
             type="text"
             placeholder="Enter you city name"
-            onChange={handleChange}
             value={city}
+            onChange={handleChange}
           />
           <button type="submit">submit</button>
         </form>
+        {<CustomDate />}
       </div>
-      <h1>{data && data.main.temp}</h1>
+      <div>
+        <h1>{flag && city}</h1>
+        <h1>
+          {data &&
+            data.main &&
+            Math.round((data.main.temp - 276 + Number.EPSILON) * 100) / 100 + " °C"}
+        </h1>
+        <p>{flag && "Have a nice day!"}</p>
+      </div>
     </div>
   );
 }
