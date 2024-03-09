@@ -32,7 +32,6 @@ function App() {
     <div className="App">
       <div>
         <form onSubmit={handleSubmit}>
-          {/* <label>Enter city name: </label> */}
           <input
             type="text"
             placeholder="Enter you city name"
@@ -45,10 +44,20 @@ function App() {
       </div>
       <div>
         <h1>{flag && city}</h1>
+        {data && data.weather && (
+          <>
+            <img
+              src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
+              alt="Weather Icon"
+            />
+            <h3>{data.weather[0].description}</h3>
+          </>
+        )}
         <h1>
           {data &&
             data.main &&
-            Math.round((data.main.temp - 276 + Number.EPSILON) * 100) / 100 + " °C"}
+            Math.round((data.main.temp - 276 + Number.EPSILON) * 100) / 100 +
+              " °C"}
         </h1>
         <p>{flag && "Have a nice day!"}</p>
       </div>
