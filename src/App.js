@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "./App.css";
 import CustomDate from "./CustomDate";
+import Header from "./Header";
+import Footer from "./Footer";
+
 
 function App() {
   const [data, setData] = useState();
@@ -29,6 +32,8 @@ function App() {
   };
 
   return (
+    <>
+    <Header />
     <div className="App">
       <form onSubmit={handleSubmit}>
         <input
@@ -41,7 +46,7 @@ function App() {
       </form>
       {<CustomDate />}
       <div className="Display">
-        <h1>{flag && city}</h1>
+        <h1>{flag && city.toUpperCase()}</h1>
         {data && data.weather && (
           <>
             <img
@@ -60,6 +65,8 @@ function App() {
         <p>{flag && "Have a nice day!"}</p>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
 
