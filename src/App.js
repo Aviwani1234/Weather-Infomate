@@ -30,19 +30,17 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Enter you city name"
-            value={city}
-            onChange={handleChange}
-          />
-          <button type="submit">submit</button>
-        </form>
-        {<CustomDate />}
-      </div>
-      <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Enter you city name"
+          value={city}
+          onChange={handleChange}
+        />
+        <button type="submit">submit</button>
+      </form>
+      {<CustomDate />}
+      <div className="Display">
         <h1>{flag && city}</h1>
         {data && data.weather && (
           <>
