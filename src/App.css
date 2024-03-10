@@ -57,7 +57,3 @@ body {
     margin-bottom: 1rem; 
   }
   
-
-.Display:has(h1:only-child) {
-    background-color: #e0ffe0; /* Light green background color */
-  }
