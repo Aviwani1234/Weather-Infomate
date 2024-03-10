@@ -26,7 +26,7 @@ function CustomDate() {
 
   let fullDate = dd + "/" + mm + "/" + yyyy;
 
-  return <h3>{ weekday[todaysDay] + "  ,  " + fullDate}</h3>;
+  return <h3>{weekday[todaysDay] + "  ,  " + fullDate}</h3>;
 }
 
 export default CustomDate;

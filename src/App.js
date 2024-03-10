@@ -4,7 +4,6 @@ import CustomDate from "./CustomDate";
 import Header from "./Header";
 import Footer from "./Footer";
 
-
 function App() {
   const [data, setData] = useState();
   const [city, setCity] = useState("");
@@ -33,39 +32,39 @@ function App() {
 
   return (
     <>
-    <Header />
-    <div className="App">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter you city name"
-          value={city}
-          onChange={handleChange}
-        />
-        <button type="submit">submit</button>
-      </form>
-      {<CustomDate />}
-      <div className="Display">
-        <h1>{flag && city.toUpperCase()}</h1>
-        {data && data.weather && (
-          <>
-            <img
-              src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
-              alt="Weather Icon"
-            />
-            <h3>{data.weather[0].description}</h3>
-          </>
-        )}
-        <h1>
-          {data &&
-            data.main &&
-            Math.round((data.main.temp - 276 + Number.EPSILON) * 100) / 100 +
-              " °C"}
-        </h1>
-        <p>{flag && "Have a nice day!"}</p>
+      <Header />
+      <div className="App">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Enter you city name"
+            value={city}
+            onChange={handleChange}
+          />
+          <button type="submit">submit</button>
+        </form>
+        {<CustomDate />}
+        <div className="Display">
+          <h1>{flag && city.toUpperCase()}</h1>
+          {data && data.weather && (
+            <>
+              <img
+                src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
+                alt="Weather Icon"
+              />
+              <h3>{data.weather[0].description}</h3>
+            </>
+          )}
+          <h1>
+            {data &&
+              data.main &&
+              Math.round((data.main.temp - 276 + Number.EPSILON) * 100) / 100 +
+                " °C"}
+          </h1>
+          <p>{flag && "Have a nice day!"}</p>
+        </div>
       </div>
-    </div>
-    <Footer/>
+      <Footer />
     </>
   );
 }
